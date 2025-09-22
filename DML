@@ -1,0 +1,98 @@
+# 🔹 Data Manipulation Language (DML)
+
+**DML (Data Manipulation Language)** is used to manage and manipulate the data stored in database tables.  
+The main DML commands are: **INSERT, UPDATE, DELETE, SELECT**.
+
+---
+
+## 1️⃣ INSERT
+Purpose: Add new records into a table.
+
+Command Example:
+
+INSERT INTO Employees (EmployeeID, FirstName, LastName, Department, Salary)
+VALUES (1, 'John', 'Doe', 'IT', 50000);
+
+**Insert multiple records**
+
+INSERT INTO Employees (EmployeeID, FirstName, LastName, Department, Salary)
+VALUES 
+(2, 'Jane', 'Smith', 'HR', 45000),
+(3, 'Mike', 'Johnson', 'Finance', 55000);
+
+##2️⃣ UPDATE
+
+Purpose: Modify existing records in a table.
+
+Command Example:
+
+UPDATE Employees
+SET Salary = 60000
+WHERE EmployeeID = 1;
+
+
+**Update multiple columns**
+
+UPDATE Employees
+SET Department = 'Marketing', Salary = 48000
+WHERE EmployeeID = 2;
+
+##3️⃣ DELETE
+
+Purpose: Remove records from a table.
+
+Command Example:
+
+DELETE FROM Employees
+WHERE EmployeeID = 3;
+
+**Delete all records**
+
+DELETE FROM Employees;
+
+##4️⃣ SELECT
+
+Purpose: Retrieve data from one or more tables.
+
+Command Examples:
+
+**Select all columns**
+
+SELECT * FROM Employees;
+
+
+**Select specific columns**
+
+SELECT FirstName, LastName, Salary FROM Employees;
+
+
+**Select with condition**
+
+SELECT * FROM Employees
+WHERE Department = 'IT';
+
+
+**Select with ordering**
+
+SELECT * FROM Employees
+ORDER BY Salary DESC;
+
+
+**Select distinct values**
+
+-- Select unique departments from the Employees table
+SELECT DISTINCT Department FROM Employees;
+
+
+**Using aggregate functions**
+
+
+-- Count the total number of employees
+SELECT COUNT(*) AS TotalEmployees FROM Employees;
+
+-- Calculate the average salary of all employees
+SELECT AVG(Salary) AS AvgSalary FROM Employees;
+
+
+
+
