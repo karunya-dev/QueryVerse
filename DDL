@@ -1,0 +1,86 @@
+# 🔹 Data Definition Language (DDL)
+
+**DDL (Data Definition Language)** is used to define, modify, and remove database objects** such as databases, tables, and indexes.  
+
+The main DDL commands are: **CREATE, ALTER, DROP, TRUNCATE**.
+
+---
+
+## 1️⃣ CREATE
+**Purpose:** Create a new database, table, or index.
+
+### Command Examples:
+
+**Create a Database**
+```sql
+CREATE DATABASE CompanyDB;
+
+##Create a Table
+
+example:
+CREATE TABLE Employees (
+    EmployeeID INT PRIMARY KEY,
+    FirstName VARCHAR(50),
+    LastName VARCHAR(50),
+    Department VARCHAR(50),
+    Salary DECIMAL(10, 2)
+);
+
+##2️⃣ ALTER
+
+Purpose: Modify the structure of an existing database or table.
+
+Command Examples:
+
+**Add a Column**
+
+ALTER TABLE Employees
+ADD Email VARCHAR(100);
+
+
+**Modify a Column**
+
+ALTER TABLE Employees
+MODIFY Salary DECIMAL(12, 2);
+
+
+**Drop a Column**
+
+ALTER TABLE Employees
+DROP COLUMN Email;
+
+##3️⃣ DROP
+
+Purpose: Delete a database, table, or index permanently.
+
+Command Examples:
+
+**Drop a Table**
+
+DROP TABLE Employees;
+
+
+**Drop a Database**
+
+DROP DATABASE CompanyDB;
+
+
+##4️⃣ TRUNCATE
+
+Purpose: Remove all rows from a table but keep the structure intact.
+
+Command Example:
+TRUNCATE TABLE Employees;
+
+## 5️⃣ RENAME
+
+Purpose: Change the name of a table or database.
+
+Command Examples:
+
+**Rename a Table**
+
+ALTER TABLE Employees RENAME TO Staff;
+
+
+
