@@ -4,7 +4,7 @@
 
 The main DDL commands are: **CREATE, ALTER, DROP, TRUNCATE**.
 
----
+--
 
 ## 1️⃣ CREATE
 **Purpose:** Create a new database, table, or index.
