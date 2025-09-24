@@ -41,7 +41,7 @@ Examples:
 ---
 
 ### 4. TCL (Transaction Control Language)  
-Used to manage transactions in a database.  
+Used to manage transactions in a database.
 Examples:  
 - `COMMIT` → Save changes permanently  
 - `ROLLBACK` → Undo changes  

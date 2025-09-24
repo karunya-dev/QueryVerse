@@ -1,0 +1,66 @@
+-- SQL Constraints Examples with Definitions and Command Lines (Types 1 to 8)
+
+-- 1. PRIMARY KEY: Uniquely identifies each record in the table and cannot be NULL
+-- Command
+CREATE TABLE Employees (
+    EmployeeID INT PRIMARY KEY,
+    Name VARCHAR(50)
+);
+
+-- 2. FOREIGN KEY: Ensures referential integrity between two tables
+-- Command 
+CREATE TABLE Orders (
+    OrderID INT PRIMARY KEY,
+    EmployeeID INT,
+    FOREIGN KEY (EmployeeID) REFERENCES Employees(EmployeeID)
+);
+
+-- 3. UNIQUE: Ensures all values in a column are unique
+-- Command 
+CREATE TABLE Students (
+    StudentID INT PRIMARY KEY,
+    Email VARCHAR(100) UNIQUE
+);
+
+-- 4. NOT NULL: Ensures a column cannot have NULL values
+-- Command 
+CREATE TABLE Products (
+    ProductID INT PRIMARY KEY,
+    ProductName VARCHAR(50) NOT NULL
+);
+
+-- 5. CHECK: Ensures that column values satisfy a specified condition
+-- Command
+CREATE TABLE EmployeesDetails (
+    EmployeeID INT PRIMARY KEY,
+    Name VARCHAR(50),
+    Age INT CHECK (Age >= 18)
+);
+
+-- 6. DEFAULT: Provides a default value when no value is supplied during insert
+-- Command
+CREATE TABLE ProductsStock (
+    ProductID INT PRIMARY KEY,
+    Quantity INT DEFAULT 0,
+    Price DECIMAL(10,2) DEFAULT 100.00
+);
+
+-- 7. AUTO_INCREMENT / IDENTITY: Automatically generates a unique value for a column (commonly used for primary key)
+-- Command for MySQL
+CREATE TABLE EmployeesAuto (
+    EmployeeID INT AUTO_INCREMENT PRIMARY KEY,
+    Name VARCHAR(50)
+);
+-- Command for SQL Server
+-- CREATE TABLE EmployeesAuto (
+--     EmployeeID INT IDENTITY(1,1) PRIMARY KEY,
+--     Name VARCHAR(50)
+-- );
+
+-- 8. COMPOSITE KEY: A primary key made of two or more columns
+-- Command to create table with COMPOSITE KEY
+CREATE TABLE Enrollment (
+    StudentID INT,
+    CourseID INT,
+    PRIMARY KEY (StudentID, CourseID)
+);

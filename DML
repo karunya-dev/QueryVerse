@@ -3,7 +3,6 @@
 **DML (Data Manipulation Language)** is used to manage and manipulate the data stored in database tables.  
 The main DML commands are: **INSERT, UPDATE, DELETE, SELECT**.
 
----
 
 ## 1️⃣ INSERT
 Purpose: Add new records into a table.
