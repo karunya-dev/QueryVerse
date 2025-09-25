@@ -1,0 +1,58 @@
+-- Create the projects table
+CREATE TABLE projects (
+    ProjectID INT,
+    ProjectName VARCHAR(100),
+    TeamLead VARCHAR(50),
+    StartDate DATE,
+    EndDate DATE,
+    Budget INT,
+    Status VARCHAR(20)
+);
+
+-- Insert sample data
+INSERT INTO projects (ProjectID, ProjectName, TeamLead, StartDate, EndDate, Budget, Status) VALUES
+(101, 'AI Chatbot', 'Karunya', '2025-01-10', '2025-03-15', 50000, 'Completed'),
+(102, 'Data Pipeline', 'Ravi', '2025-02-01', '2025-04-20', 40000, 'Completed'),
+(103, 'Cloud Migration', 'Karunya', '2025-03-05', '2025-06-30', 70000, 'Ongoing'),
+(104, 'ETL Optimization', 'Meena', '2025-04-10', '2025-05-25', 30000, 'Completed'),
+(105, 'Dashboard Revamp', 'Ravi', '2025-05-01', '2025-07-15', 45000, 'Ongoing'),
+(106, 'Security Audit', 'Meena', '2025-06-01', '2025-08-10', 35000, 'Planned');
+
+-- Apply multiple window functions
+SELECT 
+    ProjectID,
+    ProjectName,
+    TeamLead,
+    StartDate,
+    EndDate,
+    Budget,
+    Status,
+
+    -- Unique row number per TeamLead based on budget
+    ROW_NUMBER() OVER(PARTITION BY TeamLead ORDER BY Budget DESC) AS RowNum,
+
+    -- Rank projects by budget per TeamLead (skips ranks for ties)
+    RANK() OVER(PARTITION BY TeamLead ORDER BY Budget DESC) AS BudgetRank,
+
+    -- Dense rank (no gaps in rank numbers)
+    DENSE_RANK() OVER(PARTITION BY TeamLead ORDER BY Budget DESC) AS DenseBudgetRank,
+
+    -- Average budget per TeamLead
+    AVG(Budget) OVER(PARTITION BY TeamLead) AS AvgBudget,
+
+    -- Total budget per TeamLead
+    SUM(Budget) OVER(PARTITION BY TeamLead) AS TotalBudget,
+
+    -- Count of projects per TeamLead
+    COUNT(*) OVER(PARTITION BY TeamLead) AS ProjectCount,
+
+    -- Minimum budget per TeamLead
+    MIN(Budget) OVER(PARTITION BY TeamLead) AS MinBudget,
+
+    -- Maximum budget per TeamLead
+    MAX(Budget) OVER(PARTITION BY TeamLead) AS MaxBudget,
+
+    -- Percent rank based on budget
+    PERCENT_RANK() OVER(PARTITION BY TeamLead ORDER BY Budget DESC) AS PercentRank
+
+FROM projects;
