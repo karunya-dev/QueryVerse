@@ -1,0 +1,110 @@
+-- Create Customers table
+CREATE TABLE Customers (
+    CustomerID INT PRIMARY KEY,
+    CustomerName VARCHAR(100),
+    Country VARCHAR(50)
+);
+
+-- Create Orders table
+CREATE TABLE Orders (
+    OrderID INT PRIMARY KEY,
+    CustomerID INT,
+    ProductID INT,
+    Quantity INT,
+    OrderDate DATE
+);
+
+-- Create Products table
+CREATE TABLE Products (
+    ProductID INT PRIMARY KEY,
+    ProductName VARCHAR(100),
+    SupplierID INT,
+    Price DECIMAL(10,2)
+);
+
+-- Create Suppliers table
+CREATE TABLE Suppliers (
+    SupplierID INT PRIMARY KEY,
+    SupplierName VARCHAR(100),
+    Country VARCHAR(50)
+);
+
+-- Insert Customers
+INSERT INTO Customers VALUES
+(1, 'Alfreds Futterkiste', 'Germany'),
+(2, 'Ana Trujillo', 'Mexico'),
+(3, 'Antonio Moreno', 'Mexico'),
+(4, 'Around the Horn', 'UK');
+
+-- Insert Suppliers
+INSERT INTO Suppliers VALUES
+(1, 'Exotic Liquids', 'UK'),
+(2, 'New Orleans Cajun Delights', 'USA'),
+(3, 'Grandma Kelly’s Homestead', 'USA');
+
+-- Insert Products
+INSERT INTO Products VALUES
+(101, 'Chai', 1, 18.00),
+(102, 'Chang', 1, 19.00),
+(103, 'Aniseed Syrup', 2, 10.00),
+(104, 'Chef Anton’s Gumbo Mix', 2, 21.35),
+(105, 'Grandma’s Boysenberry Spread', 3, 25.00);
+
+-- Insert Orders
+INSERT INTO Orders VALUES
+(1001, 2, 101, 5, '2023-01-10'),
+(1002, 3, 103, 2, '2023-02-15'),
+(1003, 4, 105, 1, '2023-03-20'),
+(1004, 5, 102, 3, '2023-04-05'); -- CustomerID 5 doesn't exist
+
+-- INNER JOIN: Orders with Customer and Product info
+SELECT O.OrderID, C.CustomerName, P.ProductName, O.Quantity
+FROM Orders O
+INNER JOIN Customers C ON O.CustomerID = C.CustomerID
+INNER JOIN Products P ON O.ProductID = P.ProductID;
+
+-- LEFT JOIN: All orders, even if customer is missing
+SELECT O.OrderID, C.CustomerName, P.ProductName
+FROM Orders O
+LEFT JOIN Customers C ON O.CustomerID = C.CustomerID
+LEFT JOIN Products P ON O.ProductID = P.ProductID;
+
+-- RIGHT JOIN: All customers, even if they haven't ordered
+SELECT O.OrderID, C.CustomerName
+FROM Orders O
+RIGHT JOIN Customers C ON O.CustomerID = C.CustomerID;
+
+-- FULL OUTER JOIN: Combine LEFT and RIGHT (use UNION)
+SELECT O.OrderID, C.CustomerName
+FROM Orders O
+LEFT JOIN Customers C ON O.CustomerID = C.CustomerID
+UNION
+SELECT O.OrderID, C.CustomerName
+FROM Orders O
+RIGHT JOIN Customers C ON O.CustomerID = C.CustomerID;
+
+-- SELF JOIN: Suppliers in same country
+SELECT A.SupplierName AS Supplier1, B.SupplierName AS Supplier2
+FROM Suppliers A
+JOIN Suppliers B ON A.Country = B.Country AND A.SupplierID <> B.SupplierID;
+
+-- UNION: Combine product names from two sources
+SELECT ProductName FROM Products
+UNION
+SELECT SupplierName FROM Suppliers;
+
+-- UNION ALL: Same as above, but keep duplicates
+SELECT ProductName FROM Products
+UNION ALL
+SELECT SupplierName FROM Suppliers;
+
+-- CROSS JOIN: All combinations of customers and products
+SELECT C.CustomerName, P.ProductName
+FROM Customers C
+CROSS JOIN Products P;
+
+-- Advanced JOIN with aggregation
+SELECT C.Country, COUNT(O.OrderID) AS TotalOrders
+FROM Customers C
+LEFT JOIN Orders O ON C.CustomerID = O.CustomerID
+GROUP BY C.Country;
