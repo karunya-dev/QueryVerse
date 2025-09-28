@@ -1,0 +1,25 @@
+CREATE TABLE transactions (
+    txn_id INT PRIMARY KEY IDENTITY(1,1),
+    account_holder VARCHAR(100),
+    amount DECIMAL(10,2),
+    txn_type VARCHAR(10)
+);
+
+INSERT INTO transactions (account_holder, amount, txn_type) VALUES
+('Alice', 5000.00, 'credit'),
+('Bob', 3000.00, 'credit');
+
+BEGIN TRANSACTION;
+
+UPDATE transactions SET amount = amount - 1000 WHERE account_holder = 'Alice'; -- debit
+UPDATE transactions SET amount = amount + 1000 WHERE account_holder = 'Bob';   -- credit
+
+SAVE TRANSACTION after_transfer;
+
+UPDATE transactions SET amount = amount - 500 WHERE account_holder = 'Bob';
+
+ROLLBACK TRANSACTION after_transfer;
+
+COMMIT;
+
+SELECT * FROM transactions;
