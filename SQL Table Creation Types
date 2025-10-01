@@ -1,4 +1,4 @@
--- SQL Table Creation Types
+-- SQL Table Creation Types --
 
 -- 1) Basic create
 CREATE TABLE employees (
