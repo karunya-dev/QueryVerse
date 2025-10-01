@@ -1,0 +1,30 @@
+-- LeetCode 175: Combine Two Tables
+-- Goal: Return all people and their address info, even if address is missing
+
+SELECT 
+    p.firstName,
+    p.lastName,
+    a.city,
+    a.state
+FROM 
+    Person p
+LEFT JOIN 
+    Address a
+ON 
+    p.personId = a.personId;
+
+-- ------------------------------------------------------------
+
+-- LeetCode 176: Second Highest Salary
+-- Goal: Return the second highest distinct salary, or NULL if it doesn't exist
+
+SELECT 
+    IFNULL(
+        (
+            SELECT DISTINCT salary
+            FROM Employee
+            ORDER BY salary DESC
+            LIMIT 1 OFFSET 1
+        ),
+        NULL
+    ) AS SecondHighestSalary;
