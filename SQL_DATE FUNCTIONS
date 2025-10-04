@@ -1,0 +1,49 @@
+-- Create sample table
+DROP TABLE IF EXISTS sales;
+CREATE TABLE sales (
+    sale_id INT PRIMARY KEY,
+    product_name VARCHAR(50),
+    sale_date DATETIME
+);
+
+-- Insert sample data
+INSERT INTO sales (sale_id, product_name, sale_date) VALUES
+(1, 'Widget A', '2024-08-01 10:30:00'),
+(2, 'Widget B', '2024-08-05 14:00:00'),
+(3, 'Widget C', '2024-08-07 09:15:00'),
+(4, 'Widget A', '2024-08-10 16:45:00'),
+(5, 'Widget B', '2024-08-15 11:00:00'),
+(6, 'Widget C', '2024-08-20 13:30:00');
+
+-- 1. NOW(): Current date and time
+SELECT NOW() AS current_datetime;
+
+-- 2. CURDATE(): Current date only
+SELECT CURDATE() AS current_date;
+
+-- 3. CURTIME(): Current time only
+SELECT CURTIME() AS current_time;
+
+-- 4. DATE(): Extract date from datetime
+SELECT sale_id, DATE(sale_date) AS sale_date_only FROM sales;
+
+-- 5. EXTRACT(): Get year from sale_date
+SELECT sale_id, EXTRACT(YEAR FROM sale_date) AS sale_year FROM sales;
+
+-- 6. DATE_ADD(): Add 7 days to sale_date
+SELECT sale_id, DATE_ADD(sale_date, INTERVAL 7 DAY) AS sale_plus_7_days FROM sales;
+
+-- 7. DATE_SUB(): Subtract 3 days from sale_date
+SELECT sale_id, DATE_SUB(sale_date, INTERVAL 3 DAY) AS sale_minus_3_days FROM sales;
+
+-- 8. DATEDIFF(): Days between sale_date and a fixed date
+SELECT sale_id, DATEDIFF('2024-08-15', sale_date) AS days_until_aug15 FROM sales;
+
+-- 9. DATE_FORMAT(): Format sale_date for readability
+SELECT sale_id, DATE_FORMAT(sale_date, '%W, %M %d, %Y') AS formatted_sale_date FROM sales;
+
+-- 10. ADDDATE(): Add 10 days to sale_date
+SELECT sale_id, ADDDATE(sale_date, INTERVAL 10 DAY) AS sale_plus_10_days FROM sales;
+
+-- 11. ADDTIME(): Add 2 hours 30 minutes to a fixed time
+SELECT ADDTIME('10:30:00', '02:30:00') AS time_plus_2hr30min;
