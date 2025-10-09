@@ -1,0 +1,31 @@
+-- Problem 1: Duplicate Emails (LeetCode 182)
+-- Goal: Find all duplicate email addresses in the Person table
+
+select email as email
+from person
+group by email
+having count(email) > 1;
+
+
+-- Problem 2: Customers Who Never Order (LeetCode 183)
+-- Goal: List customers who have never placed an order
+
+select c.name as customers
+from customers c
+left join orders o on c.id = o.customerid
+where o.id is null;
+
+
+-- Problem 3: Department Highest Salary (LeetCode 184)
+-- Goal: Find employees with the highest salary in each department
+
+select department.name as department,
+       employee.name as employee,
+       employee.salary
+from department
+join employee on employee.departmentid = department.id
+where (departmentid, salary) in (
+    select departmentid, max(salary)
+    from employee
+    group by departmentid
+);
