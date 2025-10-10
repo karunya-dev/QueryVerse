@@ -6,11 +6,6 @@ inner join Employee as manager
 on e.managerId=manager.id
 where e.salary>manager.salary;
 
--- Explanation:
--- - Self-join Employee table to compare each employee with their manager
--- - Filter where employee's salary is greater than manager's salary
--- - Return the employee's name
--- - Handles NULL managerId by excluding unmatched rows via INNER JOIN
 
 
 -- Problem 2: Find numbers that appear at least three times consecutively
@@ -22,8 +17,4 @@ JOIN Logs l2 ON l1.id = l2.id - 1
 JOIN Logs l3 ON l1.id = l3.id - 2
 WHERE l1.num = l2.num AND l2.num = l3.num;
 
--- Explanation:
--- - Use self-joins to compare three consecutive rows by id
--- - Check if all three have the same num value
--- - Return distinct num values that satisfy the condition
--- - Assumes id is auto-incremented and ordered
+
