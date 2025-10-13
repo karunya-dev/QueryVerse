@@ -56,3 +56,4 @@ SELECT
     PERCENT_RANK() OVER(PARTITION BY TeamLead ORDER BY Budget DESC) AS PercentRank
 
 FROM projects;
+------------------------------------------------------------------------------------
