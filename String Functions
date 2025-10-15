@@ -1,0 +1,34 @@
+-- SQL String Functions
+
+
+-- 1. CONCAT: Combine strings
+SELECT CONCAT('Karunya', ' ', 'S') AS FullName;
+
+-- 2. LENGTH: Get string length
+SELECT LENGTH('QueryVerse') AS StringLength;
+
+-- 3. LOWER & UPPER: Change case
+SELECT LOWER('SQL Rocks'), UPPER('sql rocks');
+
+-- 4. SUBSTRING: Extract part of string
+SELECT SUBSTRING('Documentation', 1, 5) AS SubPart;
+
+-- 5. TRIM, LTRIM, RTRIM: Remove spaces
+SELECT TRIM('   GitHub   ') AS Trimmed,
+       LTRIM('   Left') AS LeftTrimmed,
+       RTRIM('Right   ') AS RightTrimmed;
+
+-- 6. REPLACE: Replace substring
+SELECT REPLACE('AI & Data Science', '&', 'and') AS CleanedText;
+
+-- 7. POSITION / CHARINDEX: Find substring position
+SELECT POSITION('Data' IN 'AI & Data Science') AS DataPos;
+
+-- 8. REVERSE: Flip string
+SELECT REVERSE('SQL') AS Reversed;
+
+-- 9. ASCII & CHAR: Character encoding
+SELECT ASCII('A') AS AsciiValue, CHAR(65) AS CharFromAscii;
+
+-- 10. CONCAT_WS: Concatenate with separator (MySQL only)
+SELECT CONCAT_WS('-', 'AI', 'DS', 'SQL') AS TagLine;
