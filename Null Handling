@@ -1,0 +1,25 @@
+-- SQL NULL Handling
+
+
+-- 1. IS NULL / IS NOT NULL: Check for NULL
+SELECT 'Emma' AS Name WHERE NULL IS NULL;
+SELECT 'QueryVerse' AS Repo WHERE NULL IS NOT NULL;
+
+-- 2. IFNULL (MySQL) / ISNULL (SQL Server): Replace NULL with default
+SELECT IFNULL(NULL, 'Default') AS MySQL_Handled;
+-- For SQL Server:
+-- SELECT ISNULL(NULL, 'Default') AS SQLServer_Handled;
+
+-- 3. COALESCE: Return first non-NULL value
+SELECT COALESCE(NULL, NULL, 'Fallback', 'Final') AS FirstNonNull;
+
+-- 4. NULLIF: Compare two values, return NULL if equal
+SELECT NULLIF('Joe', 'Joe') AS NullIfEqual;
+SELECT NULLIF('SQL', 'Python') AS NullIfDifferent;
+
+-- 5. CASE WHEN: Custom NULL logic
+SELECT CASE WHEN NULL IS NULL THEN 'It is NULL' ELSE 'Not NULL' END AS NullCheck;
+
+-- 6. Aggregates ignore NULLs
+SELECT AVG(NULL), COUNT(NULL), SUM(NULL); -- All return NULL
+SELECT COUNT(*) AS TotalRows, COUNT(column_name) AS NonNulls FROM your_table;
