@@ -47,3 +47,4 @@ SELECT sale_id, ADDDATE(sale_date, INTERVAL 10 DAY) AS sale_plus_10_days FROM sa
 
 -- 11. ADDTIME(): Add 2 hours 30 minutes to a fixed time
 SELECT ADDTIME('10:30:00', '02:30:00') AS time_plus_2hr30min;
+--------------------------------------------------------------------------------------------
