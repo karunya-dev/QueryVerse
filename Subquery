@@ -1,0 +1,69 @@
+--Subquery
+
+-- Drop tables if they exist
+DROP TABLE IF EXISTS Employees;
+DROP TABLE IF EXISTS Departments;
+
+-- Create mock tables
+CREATE TABLE Departments (
+    dept_id INT,
+    dept_name VARCHAR(50)
+);
+
+CREATE TABLE Employees (
+    emp_id INT,
+    emp_name VARCHAR(50),
+    salary INT,
+    dept_id INT
+);
+
+-- Insert sample data
+INSERT INTO Departments VALUES
+(1, 'Engineering'),
+(2, 'Marketing'),
+(3, 'HR');
+
+INSERT INTO Employees VALUES
+(101, 'Aarav', 70000, 1),
+(102, 'Bhavna', 85000, 1),
+(103, 'Chandan', 60000, 2),
+(104, 'Divya', 75000, 2),
+(105, 'Esha', 50000, 3);
+
+
+-- Employees earning above average salary
+
+SELECT emp_name, salary
+FROM Employees
+WHERE salary > (
+    SELECT AVG(salary)
+    FROM Employees
+);
+
+-- SUBQUERY IN SELECT: Show salary difference from average
+
+SELECT emp_name, salary,
+       salary - (SELECT AVG(salary) FROM Employees) AS diff_from_avg
+FROM Employees;
+
+
+-- CORRELATED SUBQUERY: Highest paid employee in each department
+
+SELECT emp_name, salary, dept_id
+FROM Employees e
+WHERE salary = (
+    SELECT MAX(salary)
+    FROM Employees
+    WHERE dept_id = e.dept_id
+);
+
+-- SUBQUERY IN FROM: Department-wise average salary
+
+SELECT d.dept_name, avg_salaries.avg_salary
+FROM Departments d
+JOIN (
+    SELECT dept_id, AVG(salary) AS avg_salary
+    FROM Employees
+    GROUP BY dept_id
+) AS avg_salaries
+ON d.dept_id = avg_salaries.dept_id;
