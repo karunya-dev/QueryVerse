@@ -67,3 +67,4 @@ JOIN (
     GROUP BY dept_id
 ) AS avg_salaries
 ON d.dept_id = avg_salaries.dept_id;
+---------------------------------------------------------
