@@ -1,0 +1,27 @@
+-- Purpose: Create a view to show active products with price above threshold
+
+-- Create the Products table
+CREATE TABLE Products (
+    product_id INT PRIMARY KEY,
+    product_name VARCHAR(100),
+    category VARCHAR(50),
+    price DECIMAL(10,2),
+    is_active BOOLEAN
+);
+
+-- Insert sample data
+INSERT INTO Products VALUES
+(1, 'Laptop', 'Electronics', 75000.00, TRUE),
+(2, 'Desk Chair', 'Furniture', 4500.00, TRUE),
+(3, 'Notebook', 'Stationery', 50.00, FALSE),
+(4, 'Smartphone', 'Electronics', 60000.00, TRUE),
+(5, 'Pen', 'Stationery', 20.00, TRUE);
+
+-- Create a view for active products priced above 5000
+CREATE VIEW HighValueActiveProducts AS
+SELECT product_id, product_name, category, price
+FROM Products
+WHERE is_active = TRUE AND price > 5000;
+
+-- Query the view
+SELECT * FROM HighValueActiveProducts;
