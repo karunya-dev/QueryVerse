@@ -1,0 +1,32 @@
+-- Purpose: Classify employee performance based on score
+
+-- Step 1: Create the table
+CREATE TABLE EmployeeScores (
+    emp_id INT PRIMARY KEY,
+    emp_name VARCHAR(100),
+    department VARCHAR(50),
+    score INT
+);
+
+-- Step 2: Insert sample data
+INSERT INTO EmployeeScores VALUES
+(101, 'Amit', 'Sales', 92),
+(102, 'Neha', 'Marketing', 76),
+(103, 'Raj', 'HR', 58),
+(104, 'Divya', 'Tech', 45),
+(105, 'Kiran', 'Finance', NULL);
+
+-- Step 3: Apply CASE WHEN logic to classify performance
+SELECT
+    emp_name,
+    department,
+    score,
+    CASE
+        WHEN score >= 85 THEN 'Outstanding'
+        WHEN score BETWEEN 70 AND 84 THEN 'Exceeds Expectations'
+        WHEN score BETWEEN 50 AND 69 THEN 'Meets Expectations'
+        WHEN score < 50 THEN 'Needs Improvement'
+        ELSE 'No Score Available'
+    END AS performance_category
+FROM EmployeeScores;
+
