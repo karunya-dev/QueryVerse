@@ -1,0 +1,162 @@
+
+-- SQL Normalization: Definitions & Examples
+
+
+-- 🔹 What is Normalization?
+-- Normalization is the process of organizing data in a database to reduce redundancy and improve data integrity.
+-- It involves decomposing tables into smaller, well-structured tables without losing data.
+
+
+-- UNNORMALIZED TABLE (UNF): Orders with Repeating Groups
+
+
+-- Drop if exists
+DROP TABLE IF EXISTS Orders_UNF;
+
+-- Create unnormalized table
+CREATE TABLE Orders_UNF (
+    OrderID INT,
+    CustomerName VARCHAR(100),
+    ItemsPurchased VARCHAR(255) -- e.g., 'Pen, Pencil, Eraser'
+);
+
+-- Insert sample data
+INSERT INTO Orders_UNF VALUES
+(1, 'Alice', 'Pen, Pencil'),
+(2, 'Bob', 'Notebook, Eraser, Pen');
+
+--  Output
+-- +---------+--------------+--------------------------+
+-- | OrderID | CustomerName | ItemsPurchased           |
+-- +---------+--------------+--------------------------+
+-- |   1     | Alice        | Pen, Pencil              |
+-- |   2     | Bob          | Notebook, Eraser, Pen    |
+-- +---------+--------------+--------------------------+
+
+
+-- FIRST NORMAL FORM (1NF): Atomic Values
+
+
+DROP TABLE IF EXISTS Orders_1NF;
+
+CREATE TABLE Orders_1NF (
+    OrderID INT,
+    CustomerName VARCHAR(100),
+    Item VARCHAR(50)
+);
+
+INSERT INTO Orders_1NF VALUES
+(1, 'Alice', 'Pen'),
+(1, 'Alice', 'Pencil'),
+(2, 'Bob', 'Notebook'),
+(2, 'Bob', 'Eraser'),
+(2, 'Bob', 'Pen');
+
+-- Output
+-- +---------+--------------+-----------+
+-- | OrderID | CustomerName | Item      |
+-- +---------+--------------+-----------+
+-- |   1     | Alice        | Pen       |
+-- |   1     | Alice        | Pencil    |
+-- |   2     | Bob          | Notebook  |
+-- |   2     | Bob          | Eraser    |
+-- |   2     | Bob          | Pen       |
+-- +---------+--------------+-----------+
+
+
+--SECOND NORMAL FORM (2NF): Remove Partial Dependencies
+
+
+-- Split into Orders and OrderItems
+
+DROP TABLE IF EXISTS Orders;
+DROP TABLE IF EXISTS OrderItems;
+
+CREATE TABLE Orders (
+    OrderID INT PRIMARY KEY,
+    CustomerName VARCHAR(100)
+);
+
+CREATE TABLE OrderItems (
+    OrderID INT,
+    Item VARCHAR(50),
+    FOREIGN KEY (OrderID) REFERENCES Orders(OrderID)
+);
+
+INSERT INTO Orders VALUES
+(1, 'Alice'),
+(2, 'Bob');
+
+INSERT INTO OrderItems VALUES
+(1, 'Pen'),
+(1, 'Pencil'),
+(2, 'Notebook'),
+(2, 'Eraser'),
+(2, 'Pen');
+
+--  Output: Orders
+-- +---------+--------------+
+-- | OrderID | CustomerName |
+-- +---------+--------------+
+-- |   1     | Alice        |
+-- |   2     | Bob          |
+-- +---------+--------------+
+
+-- Output: OrderItems
+-- +---------+-----------+
+-- | OrderID | Item      |
+-- +---------+-----------+
+-- |   1     | Pen       |
+-- |   1     | Pencil    |
+-- |   2     | Notebook  |
+-- |   2     | Eraser    |
+-- |   2     | Pen       |
+-- +---------+-----------+
+
+-- THIRD NORMAL FORM (3NF): Remove Transitive Dependencies
+
+-- Assume each item has a category (e.g., 'Pen' → 'Stationery')
+
+DROP TABLE IF EXISTS Items;
+DROP TABLE IF EXISTS OrderItems_3NF;
+
+CREATE TABLE Items (
+    Item VARCHAR(50) PRIMARY KEY,
+    Category VARCHAR(50)
+);
+
+CREATE TABLE OrderItems_3NF (
+    OrderID INT,
+    Item VARCHAR(50),
+    FOREIGN KEY (OrderID) REFERENCES Orders(OrderID),
+    FOREIGN KEY (Item) REFERENCES Items(Item)
+);
+
+INSERT INTO Items VALUES
+('Pen', 'Stationery'),
+('Pencil', 'Stationery'),
+('Notebook', 'Stationery'),
+('Eraser', 'Stationery');
+
+INSERT INTO OrderItems_3NF VALUES
+(1, 'Pen'),
+(1, 'Pencil'),
+(2, 'Notebook'),
+(2, 'Eraser'),
+(2, 'Pen');
+
+-- Simulated Output: Items
+-- +-----------+------------+
+-- | Item      | Category   |
+-- +-----------+------------+
+-- | Pen       | Stationery |
+-- | Pencil    | Stationery |
+-- | Notebook  | Stationery |
+-- | Eraser    | Stationery |
+-- +-----------+------------+
+
+-- Now the schema is in 3NF: No partial or transitive dependencies.
+
+
+-- End of SQL Normalization Demo
+
