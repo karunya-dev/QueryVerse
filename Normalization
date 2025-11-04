@@ -155,8 +155,5 @@ INSERT INTO OrderItems_3NF VALUES
 -- | Eraser    | Stationery |
 -- +-----------+------------+
 
--- Now the schema is in 3NF: No partial or transitive dependencies.
-
-
--- End of SQL Normalization Demo
+-------------------------------------------------------------------------------------
 
