@@ -2,7 +2,7 @@
 -- SQL Normalization: Definitions & Examples
 
 
--- 🔹 What is Normalization?
+--  What is Normalization?
 -- Normalization is the process of organizing data in a database to reduce redundancy and improve data integrity.
 -- It involves decomposing tables into smaller, well-structured tables without losing data.
 
@@ -155,8 +155,5 @@ INSERT INTO OrderItems_3NF VALUES
 -- | Eraser    | Stationery |
 -- +-----------+------------+
 
--- Now the schema is in 3NF: No partial or transitive dependencies.
 
-
--- End of SQL Normalization Demo
 
