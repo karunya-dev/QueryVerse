@@ -1,0 +1,93 @@
+
+-- =======================
+-- Problem 577: Employee Bonus
+-- Question:
+-- Show the name and bonus amount of employees whose bonus is
+-- less than 1000 OR whose bonus is NULL (no record).
+-- =======================
+
+-- Step 1: Create tables
+CREATE TABLE Employee (
+    empId INT PRIMARY KEY,
+    name VARCHAR(50),
+    salary INT
+);
+
+CREATE TABLE Bonus (
+    empId INT,
+    bonus INT
+);
+
+-- Step 2: Insert sample data
+INSERT INTO Employee (empId, name, salary) VALUES
+(1, 'John', 1000),
+(2, 'Dan', 2000),
+(3, 'Brad', 4000),
+(4, 'Thomas', 4000);
+
+INSERT INTO Bonus (empId, bonus) VALUES
+(2, 500),
+(4, 2000);
+
+-- LEFT JOIN + WHERE
+SELECT e.name, b.bonus
+FROM Employee e
+LEFT JOIN Bonus b
+    ON e.empId = b.empId
+WHERE b.bonus < 1000 OR b.bonus IS NULL;
+
+
+
+-- Expected Output
+-- name   | bonus
+-- -------|------
+-- John   | NULL
+-- Dan    | 500
+-- Brad   | NULL
+-- =======================
+
+
+-- =======================
+-- Problem 511: Game Play Analysis I
+-- Question:
+-- Write a SQL query to find the first login date for each player.
+-- =======================
+
+-- Step 1: Create table
+CREATE TABLE Activity (
+    player_id INT,
+    device_id INT,
+    event_date DATE,
+    games_played INT
+);
+
+-- Step 2: Insert sample data
+INSERT INTO Activity (player_id, device_id, event_date, games_played) VALUES
+(1, 2, '2016-03-01', 5),
+(1, 2, '2016-05-02', 6),
+(2, 3, '2017-06-25', 1),
+(3, 1, '2016-03-02', 0),
+(3, 4, '2018-07-03', 5);
+
+-- Solution 1: Using MIN()
+SELECT player_id, MIN(event_date) AS first_login
+FROM Activity
+GROUP BY player_id;
+
+-- Solution 2: Using ROW_NUMBER()
+SELECT player_id, event_date AS first_login
+FROM (
+    SELECT player_id,
+           event_date,
+           ROW_NUMBER() OVER (PARTITION BY player_id ORDER BY event_date ASC) AS rn
+    FROM Activity
+) t
+WHERE rn = 1;
+
+-- Expected Output:
+-- player_id | first_login
+-- ----------|------------
+-- 1         | 2016-03-01
+-- 2         | 2017-06-25
+-- 3         | 2016-03-02
+-- =======================
