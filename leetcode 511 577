@@ -1,12 +1,11 @@
 
 -- =======================
 -- Problem 577: Employee Bonus
--- Question:
 -- Show the name and bonus amount of employees whose bonus is
 -- less than 1000 OR whose bonus is NULL (no record).
 -- =======================
 
--- Step 1: Create tables
+--Create tables
 CREATE TABLE Employee (
     empId INT PRIMARY KEY,
     name VARCHAR(50),
@@ -18,7 +17,7 @@ CREATE TABLE Bonus (
     bonus INT
 );
 
--- Step 2: Insert sample data
+--Insert sample data
 INSERT INTO Employee (empId, name, salary) VALUES
 (1, 'John', 1000),
 (2, 'Dan', 2000),
@@ -49,11 +48,10 @@ WHERE b.bonus < 1000 OR b.bonus IS NULL;
 
 -- =======================
 -- Problem 511: Game Play Analysis I
--- Question:
 -- Write a SQL query to find the first login date for each player.
 -- =======================
 
--- Step 1: Create table
+-- Create table
 CREATE TABLE Activity (
     player_id INT,
     device_id INT,
@@ -61,7 +59,7 @@ CREATE TABLE Activity (
     games_played INT
 );
 
--- Step 2: Insert sample data
+-- Insert sample data
 INSERT INTO Activity (player_id, device_id, event_date, games_played) VALUES
 (1, 2, '2016-03-01', 5),
 (1, 2, '2016-05-02', 6),
