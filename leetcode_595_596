@@ -1,0 +1,47 @@
+-- ------------------------------------------------------------
+-- LeetCode Problem 595: Big Countries
+-- ------------------------------------------------------------
+-- Table: World
+-- +-------------+---------+
+-- | Column Name | Type    |
+-- +-------------+---------+
+-- | name        | varchar |
+-- | continent   | varchar |
+-- | area        | int     |
+-- | population  | int     |
+-- | gdp         | bigint  |
+-- +-------------+---------+
+-- name is the primary key (column with unique values).
+-- Each row of this table gives information about the country.
+--
+-- A country is big if:
+--   - it has an area of at least 3,000,000 km², OR
+--   - it has a population of at least 25,000,000.
+--
+-- Write a solution to output big countries' name, population, and area.
+
+SELECT name, population, area
+FROM World
+WHERE area >= 3000000 OR population >= 25000000;
+
+
+-- ------------------------------------------------------------
+-- LeetCode Problem 596: Classes With at Least 5 Students
+-- ------------------------------------------------------------
+-- Table: Courses
+-- +-------------+---------+
+-- | Column Name | Type    |
+-- +-------------+---------+
+-- | student     | varchar |
+-- | class       | varchar |
+-- +-------------+---------+
+-- (student, class) is the primary key (combination of columns with unique values).
+-- Each row of this table indicates the name of a student and the class in which they are enrolled.
+--
+-- Write a solution to find all the classes that have at least five students.
+-- Return the result table in any order.
+
+SELECT class
+FROM Courses
+GROUP BY class
+HAVING COUNT(student) >= 5;
