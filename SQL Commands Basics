@@ -1,6 +1,6 @@
 # Introduction to SQL  
 
-## 🔹 What is SQL?  
+## What is SQL?  
 **SQL (Structured Query Language)** is a standard language used to interact with relational databases.  
 It allows you to:  
 - Create and manage database structures  
@@ -10,7 +10,7 @@ It allows you to:
 
 ---
 
-## 🔹 Categories of SQL Commands  
+## Categories of SQL Commands  
 
 ### 1. DDL (Data Definition Language)  
 Used to define or modify database structures (schema).  
@@ -47,4 +47,4 @@ Examples:
 - `ROLLBACK` → Undo changes  
 - `SAVEPOINT` → Create a point within a transaction to roll back to later  
 
----
+-------------------------------------------------------------------------------

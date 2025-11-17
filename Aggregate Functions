@@ -1,4 +1,4 @@
-# SQL Aggregate Functions
+SQL Aggregate Functions
 
 Aggregate functions in SQL are used to perform calculations on multiple rows of a table’s column and return a single value. These functions are commonly used with the `GROUP BY` clause but can also be used without it.
 
@@ -81,3 +81,4 @@ GROUP BY Department;
 SELECT Department, AVG(Salary) AS AvgSalary
 FROM Employees
 GROUP BY Department;
+----------------------------------------------------------------------------------------

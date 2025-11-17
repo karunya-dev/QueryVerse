@@ -29,3 +29,4 @@ where (departmentid, salary) in (
     from employee
     group by departmentid
 );
+----------------------------------------------------------------------------
