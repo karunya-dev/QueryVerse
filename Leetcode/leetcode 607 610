@@ -1,0 +1,51 @@
+
+-- LeetCode 607. Sales Person
+-- Problem Statement:
+-- Find the names of all salespersons who did not make any sales 
+-- to the company named 'RED'.
+--
+-- Tables:
+-- SalesPerson(sales_id, name, salary, commission_rate, hire_date)
+-- Company(com_id, name, city)
+-- Orders(order_id, order_date, com_id, sales_id, amount)
+--
+-- Expected Output:
+-- Names of salespersons who never had orders with company 'RED'.
+
+SELECT s.name
+FROM SalesPerson s
+WHERE s.sales_id NOT IN (
+    SELECT o.sales_id
+    FROM Orders o
+    JOIN Company c
+      ON o.com_id = c.com_id
+    WHERE c.name = 'RED'
+);
+
+
+-- LeetCode 610. Triangle Judgement
+
+-- Problem Statement:
+-- Each row of the Triangle table contains three line segments (x, y, z).
+-- Report whether these three segments can form a valid triangle.
+--
+-- Rule:
+-- A triangle is valid if:
+--   x + y > z AND x + z > y AND y + z > x
+--
+-- Table:
+-- Triangle(x, y, z)
+--
+-- Expected Output:
+-- Add a column 'triangle' with 'Yes' or 'No'.
+
+SELECT  x,y,z,
+CASE
+ WHEN x+y>z and x+z>y and y+z>x
+   THEN 'Yes'
+  ELSE 'No'
+ END as triangle
+FROM Triangle
+
+
+
