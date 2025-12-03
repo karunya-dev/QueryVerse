@@ -1,4 +1,4 @@
--- Purpose: Classify employee performance based on score
+
 
 -- Step 1: Create the table
 CREATE TABLE EmployeeScores (
@@ -30,4 +30,4 @@ SELECT
     END AS performance_category
 FROM EmployeeScores;
 
-----------------------------------------------------------------------
+
