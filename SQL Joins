@@ -108,4 +108,4 @@ SELECT C.Country, COUNT(O.OrderID) AS TotalOrders
 FROM Customers C
 LEFT JOIN Orders O ON C.CustomerID = O.CustomerID
 GROUP BY C.Country;
----------------------------------------------------------------------------------------------
+
