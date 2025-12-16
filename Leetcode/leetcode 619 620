@@ -13,12 +13,10 @@ WHERE num IN (
     HAVING COUNT(num) = 1
 );
 
-
 -- Problem 620: Not Boring Movies
 -- Table: Cinema
 -- Goal: Report movies with odd-numbered ID and description not 'boring'
 -- Ordered by rating descending
-
 
 SELECT *
 FROM Cinema
