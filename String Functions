@@ -31,6 +31,4 @@ SELECT REVERSE('SQL') AS Reversed;
 SELECT ASCII('A') AS AsciiValue, CHAR(65) AS CharFromAscii;
 
 -- 10. CONCAT_WS: Concatenate with separator (MySQL only)
-SELECT CONCAT_WS('-', 'AI', 'DS', 'SQL') AS TagLine;
-
----------------------------------------------------------------------
+SELECT CONCAT_WS('-', 'AI', 'DS', 'SQL') AS TagLine

@@ -47,5 +47,3 @@ CASE
  END as triangle
 FROM Triangle
 
-
-
