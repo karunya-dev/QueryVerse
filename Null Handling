@@ -23,4 +23,3 @@ SELECT CASE WHEN NULL IS NULL THEN 'It is NULL' ELSE 'Not NULL' END AS NullCheck
 -- 6. Aggregates ignore NULLs
 SELECT AVG(NULL), COUNT(NULL), SUM(NULL); -- All return NULL
 SELECT COUNT(*) AS TotalRows, COUNT(column_name) AS NonNulls FROM your_table;
-------------------------------------------------------------------------------
