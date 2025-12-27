@@ -5,7 +5,6 @@ CREATE TABLE sales (
     product_name VARCHAR(50),
     sale_date DATETIME
 );
-
 -- Insert sample data
 INSERT INTO sales (sale_id, product_name, sale_date) VALUES
 (1, 'Widget A', '2024-08-01 10:30:00'),
