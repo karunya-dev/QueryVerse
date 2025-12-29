@@ -1,4 +1,4 @@
--- SQL Constraints Examples with Definitions and Command Lines (Types 1 to 8)
+-- SQL Constraints Examples with Definitions and Command Lines
 
 -- 1. PRIMARY KEY: Uniquely identifies each record in the table and cannot be NULL
 -- Command
