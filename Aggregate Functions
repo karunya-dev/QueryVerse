@@ -5,7 +5,6 @@ Aggregate functions in SQL are used to perform calculations on multiple rows of 
 ## COUNT()
 Returns the number of rows that match a specified condition.
 
-```sql
 -- Count total employees
 SELECT COUNT(*) AS TotalEmployees
 FROM Employees;
