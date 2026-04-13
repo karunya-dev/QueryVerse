@@ -1,6 +1,5 @@
 SQL NULL Handling
 
-
 -- 1. IS NULL / IS NOT NULL: Check for NULL
 SELECT 'Emma' AS Name WHERE NULL IS NULL;
 SELECT 'QueryVerse' AS Repo WHERE NULL IS NOT NULL;
