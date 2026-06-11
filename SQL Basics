@@ -1,5 +1,4 @@
-# Introduction to SQL  
-
+# Introduction to SQL 
 ## 🔹 What is SQL?  
 **SQL (Structured Query Language)** is a standard language used to interact with relational databases.  
 It allows you to:  
@@ -7,7 +6,6 @@ It allows you to:
 - Insert, update, and delete data  
 - Retrieve and analyze data  
 - Control access and security  
-
 
 ## 🔹 Categories of SQL Commands  
 
