@@ -2,7 +2,7 @@
 ## 🔹 What is SQL?  
 **SQL (Structured Query Language)** is a standard language used to interact with relational databases.  
 It allows you to:  
-- Create and manage database structures  
+- Create and manage database structure
 - Insert, update, and delete data  
 - Retrieve and analyze data  
 - Control access and security  
