@@ -8,9 +8,7 @@ CREATE TABLE Products (
     price DECIMAL(10,2),
     is_active BOOLEAN
 );
-
 -- Insert sample data
-
 INSERT INTO Products VALUES
 (1, 'Laptop', 'Electronics', 75000.00, TRUE),
 (2, 'Desk Chair', 'Furniture', 4500.00, TRUE),
